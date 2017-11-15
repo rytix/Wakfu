@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Wakfu Útils</title>
+    <style type="text/css">
+      body{
+        background-color: #ecf0f1 !important;
+      }
+    </style>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  </head>
+  <body class="container">
+    <div class="col-md-12" style="text-align: center;">
+      <h1>Ferramentas Úteis ao Wakfu</h1>
+    </div>
+    <div class="col-md-12">
+      <h2>Calculador de XP para Profissões</h2>
+      <p>Todas as profissões seguem a mesma lógica de nível</p>
+      <div class="col-md-6">
+        <label for="nivel_atual">Nível Atual:</label>
+        <input class="calculador-profissao-input" id="nivel_atual" type="number" min="0" value="0">
+      </div>
+      <div class="col-md-12">
+        <label for="nivel_almejado">Nível Almejado:</label>
+        <input class="calculador-profissao-input" id="nivel_almejado" type="number" min="0" value="10">
+      </div>
+      <div class="col-md-12">
+        <label for="xp_necessaria">XP Necessária:</label>
+        <input class="calculador-profissao-input" id="xp_necessaria" disabled>
+      </div>
+      <p>Se você souber o XP que o item que você for criar irá dar:</p>
+      <div class="col-md-12">
+        <label for="xp_item">XP do Item:</label>
+        <input class="calculador-profissao-input" id="xp_item" type="number" min="1" value="1">
+      </div>
+      <div class="col-md-12">
+        <label for="n_criacoes">Nº Criações Necessárias:</label>
+        <input class="calculador-profissao-input" id="n_criacoes" disabled>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <h2>Links Úteis</h2>
+      <ul>
+        <li>
+          <a href="http://methodwakfu.com/en/builder/">Builder</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      function calculador_profissao(){
+        var nivel_atual = $("#nivel_atual").val();
+        var nivel_almejado = $("#nivel_almejado").val();
+        var xp_necessaria = 0;
+        
+        for(var i = nivel_atual; i < nivel_almejado; i++){
+          xp_necessaria += i*150 + 75;
+        }
+        $("#xp_necessaria").val(xp_necessaria+" XP");
+        
+        var xp_item = $("#xp_item").val();
+        $("#n_criacoes").val(Math.ceil(xp_necessaria/xp_item) + " Itens");
+      }
+      $(document).on('change','.calculador-profissao-input',calculador_profissao);
+      $(document).on('click','.calculador-profissao-input',calculador_profissao);
+      $(document).on('keyup','.calculador-profissao-input',calculador_profissao);
+      calculador_profissao();
+    </script>
+  </body>
+</html>
