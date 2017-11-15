@@ -59,16 +59,15 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
     <script type="text/javascript">
       function calculador_profissao(){
-        var nivel_atual = $("#nivel_atual").val();
-        var nivel_almejado = $("#nivel_almejado").val();
+        var nivel_atual = parseInt($("#nivel_atual").val());
+        var nivel_almejado = parseInt($("#nivel_almejado").val());
         var xp_necessaria = 0;
-        
         for(var i = nivel_atual; i < nivel_almejado; i++){
           xp_necessaria += i*150 + 75;
         }
         $("#xp_necessaria").val(xp_necessaria+" XP");
         
-        var xp_item = $("#xp_item").val();
+        var xp_item = parseInt($("#xp_item").val());
         $("#n_criacoes").val(Math.ceil(xp_necessaria/xp_item) + " Itens");
       }
       $(document).on('change','.calculador-profissao-input',calculador_profissao);
